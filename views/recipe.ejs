@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+
+<article class="recipe-article">
+  <h1><%= recipe.title %></h1>
+  
+  <!-- Author/Byline -->
+  <p class="byline">By <%= recipe.author || "Anonymous" %> | <%= recipe.createdAt.toDateString() %></p>
+
+  <% if (recipe.image) { %>
+    <img src="<%= recipe.image %>" alt="<%= recipe.title %>">
+  <% } %>
+
+  <p class="recipe-description"><%= recipe.description %></p>
+
+  <section class="recipe-content">
+    <div>
+      <h3>Ingredients</h3>
+      <ul class="ingredient-list">
+        <% recipe.ingredients.forEach(i => { %>
+          <li>• <%= i %></li>
+        <% }) %>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Instructions</h3>
+      <p><%= recipe.instructions %></p>
+    </div>
+  </section>
+
+  <form action="/recipe/<%= recipe._id %>/delete" method="POST" onsubmit="return confirm('Delete this recipe?');">
+    <button class="delete-btn" type="submit">Delete Recipe</button>
+  </form>
+</article>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+
+<section class="hero">
+  <h1>Aruban Recipes</h1>
+  <p>Delicious dishes, stories, and flavors from the Caribbean</p>
+  <div class="scroll-down">&#x25BC;</div>
+</section>
+
+<section class="editorial-grid">
+  <% recipes.forEach(recipe => { %>
+    <article class="editorial-card">
+      <a href="/recipe/<%= recipe._id %>">
+        <% if (recipe.image) { %>
+          <img src="<%= recipe.image %>" alt="<%= recipe.title %>">
+        <% } %>
+        <h2><%= recipe.title %></h2>
+        <p><%= recipe.description %></p>
+      </a>
+    </article>
+  <% }) %>
+</section>
+
+<%- include('partials/footer') %>
